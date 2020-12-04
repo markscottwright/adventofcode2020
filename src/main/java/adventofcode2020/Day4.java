@@ -21,21 +21,20 @@ public class Day4 {
     }
 
     static public class PassportField {
-        static HashMap<String, Validator> validators;
+        static HashMap<String, Validator> validators = new HashMap<>();
         static {
-            validators = new HashMap<>();
             validators.put("byr", v -> {
-                return matches("[0-9][0-9][0-9][0-9]", v) && parseInt(v) >= 1920
+                return matches("[0-9]{4}", v) && parseInt(v) >= 1920
                         && parseInt(v) <= 2002;
 
             });
             validators.put("iyr", v -> {
-                return matches("[0-9][0-9][0-9][0-9]", v) && parseInt(v) >= 2010
+                return matches("[0-9]{4}", v) && parseInt(v) >= 2010
                         && parseInt(v) <= 2020;
 
             });
             validators.put("eyr", v -> {
-                return matches("[0-9][0-9][0-9][0-9]", v) && parseInt(v) >= 2020
+                return matches("[0-9]{4}", v) && parseInt(v) >= 2020
                         && parseInt(v) <= 2030;
 
             });
@@ -51,16 +50,13 @@ public class Day4 {
                 return false;
             });
             validators.put("hcl", v -> {
-                // 6 digits
-                return matches(
-                        "#[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]", v);
+                return matches("#[a-f0-9]{6}", v);
             });
             validators.put("ecl", v -> {
                 return matches("amb|blu|brn|gry|grn|hzl|oth", v);
             });
             validators.put("pid", v -> {
-                return matches("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]",
-                        v);
+                return matches("[0-9]{9}", v);
             });
         };
 
@@ -83,7 +79,7 @@ public class Day4 {
             if (isValid)
                 return true;
 
-            //System.out.println("Invalid: " + this);
+            // System.out.println("Invalid: " + this);
             return false;
         }
 
