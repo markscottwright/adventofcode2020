@@ -162,10 +162,10 @@ public class Day8 {
                 .readProgram(new File("src/main/resources/day8.txt"));
         var part1Answer = new HandholdGameConsole(program)
                 .runProgramUntilLoop();
-        System.out.println("Day 8 part 1: " + part1Answer);
+        System.out.println("Day 8 part 1: " + part1Answer.accumulator);
 
         Result result = mutateProgramUntilExit(program);
-        System.out.println("Day 8 part 2: " + result);
+        System.out.println("Day 8 part 2: " + result.accumulator);
     }
 
     private static Result mutateProgramUntilExit(List<Instruction> program) {
@@ -187,9 +187,9 @@ public class Day8 {
             Result result = new HandholdGameConsole(mutatedProgram)
                     .runProgramUntilLoop();
             if (result.exitType == ProgramExit.EXIT) {
-                System.out.println("Address to mutate: " + addressToMutate
-                        + " - " + program.get(addressToMutate) + " -> "
-                        + program.get(addressToMutate).swapNopAndJmp());
+//                System.out.println("Address to mutate: " + addressToMutate
+//                        + " - " + program.get(addressToMutate) + " -> "
+//                        + program.get(addressToMutate).swapNopAndJmp());
                 return result;
             }
             addressToMutate++;
