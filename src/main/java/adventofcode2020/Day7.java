@@ -12,16 +12,11 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
- * @author mark
- *
+ * Use TreeMap/TreeSet everywhere for nice println-ing.
  */
 public class Day7 {
     /**
-     * Parse a line like: "plaid tan bags contain 4 light coral bags, 2 dim
-     * fuchsia bags, 3 mirrored coral bags."
-     * 
-     * Into a rule likes: "plaid tan" : {"light coral" : 4, "dim fuchsia": 2,
-     * "mirrored coral": 3}
+     * A bag and what bags it must contain
      */
     static public class BagRule {
         final String container;
@@ -32,6 +27,13 @@ public class Day7 {
             this.contents = contents;
         }
 
+        /**
+         * Parse a line like: "plaid tan bags contain 4 light coral bags, 2 dim
+         * fuchsia bags, 3 mirrored coral bags."
+         * 
+         * Into a rule likes: "plaid tan" : {"light coral" : 4, "dim fuchsia":
+         * 2, "mirrored coral": 3}
+         */
         static BagRule parse(String s) {
             String[] containerAndContents = s.split("contain");
             String container = containerAndContents[0].replaceAll("bags", "")
@@ -94,20 +96,10 @@ public class Day7 {
         return foundContainers;
     }
 
-    public static void main(String[] args) throws IOException {
-
-        var bagRules = Files
-                .readAllLines(Paths.get("src/main/resources/day7.txt")).stream()
-                .map(BagRule::parse).collect(Collectors.toList());
-        var containedByMap = createContainedByMap(bagRules);
-        System.out.println("Day 7 part 1:"
-                + collectAllContainers(containedByMap, "shiny gold").size());
-
-        var bagToRule = buildRuleMap(bagRules);
-        int bagsInShinyGold = countBagsIn(bagToRule, "shiny gold");
-        System.out.println("Day 7 part 2:" + bagsInShinyGold);
-    }
-
+    /**
+     * Using the bag rules collection, recursively count all the bags in 1 of
+     * bagName.
+     */
     private static int countBagsIn(TreeMap<String, BagRule> bagToRule,
             String bagName) {
         int count = 0;
@@ -127,5 +119,19 @@ public class Day7 {
             bagToRule.put(bagRule.container, bagRule);
         }
         return bagToRule;
+    }
+
+    public static void main(String[] args) throws IOException {
+        var bagRules = Files
+                .readAllLines(Paths.get("src/main/resources/day7.txt")).stream()
+                .map(BagRule::parse).collect(Collectors.toList());
+        
+        var containedByMap = createContainedByMap(bagRules);
+        System.out.println("Day 7 part 1:"
+                + collectAllContainers(containedByMap, "shiny gold").size());
+
+        var bagToRule = buildRuleMap(bagRules);
+        int bagsInShinyGold = countBagsIn(bagToRule, "shiny gold");
+        System.out.println("Day 7 part 2:" + bagsInShinyGold);
     }
 }
