@@ -65,9 +65,9 @@ public class Day10 {
             else
                 threeDifferences++;
         }
-        System.out.println(
-                String.format("%d one differences, %d three differences",
-                        oneDifferences, threeDifferences));
+//        System.out.println(
+//                String.format("%d one differences, %d three differences",
+//                        oneDifferences, threeDifferences));
         int part1Answer = oneDifferences * threeDifferences;
         return part1Answer;
     }
