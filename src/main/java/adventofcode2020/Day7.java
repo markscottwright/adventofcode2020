@@ -127,11 +127,11 @@ public class Day7 {
                 .map(BagRule::parse).collect(Collectors.toList());
         
         var containedByMap = createContainedByMap(bagRules);
-        System.out.println("Day 7 part 1:"
+        System.out.println("Day 7 part 1: "
                 + collectAllContainers(containedByMap, "shiny gold").size());
 
         var bagToRule = buildRuleMap(bagRules);
         int bagsInShinyGold = countBagsIn(bagToRule, "shiny gold");
-        System.out.println("Day 7 part 2:" + bagsInShinyGold);
+        System.out.println("Day 7 part 2: " + bagsInShinyGold);
     }
 }

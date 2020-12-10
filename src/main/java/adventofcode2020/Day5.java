@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.OptionalInt;
-import java.util.stream.Collectors;
 
 public class Day5 {
     static public class Seat {
@@ -51,7 +49,7 @@ public class Day5 {
 
         int maxSeatId = seats.get(seats.size() - 1).getSeatId();
 
-        System.out.println("Day 5 part 1:" + maxSeatId);
+        System.out.println("Day 5 part 1: " + maxSeatId);
 
         int mySeatId = 0;
         for (int i = 1; i < seats.size(); i++) {
@@ -60,6 +58,6 @@ public class Day5 {
                 break;
             }
         }
-        System.out.println("Day 5 part 2:" + mySeatId);
+        System.out.println("Day 5 part 2: " + mySeatId);
     }
 }

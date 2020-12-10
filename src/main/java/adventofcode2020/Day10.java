@@ -24,11 +24,10 @@ public class Day10 {
 
         int part1Answer = numOneDifferencesTimesNumThreeDifferences(
                 adapterChain);
-        System.out.println("Day 10 part 1:" + part1Answer);
+        System.out.println("Day 10 part 1: " + part1Answer);
 
         long totalWaysToArrange = numWaysToArrange(adapterChain);
-        System.out.println("Day 10 part 2:" + totalWaysToArrange);
-
+        System.out.println("Day 10 part 2: " + totalWaysToArrange);
     }
 
     private static long numWaysToArrange(ArrayList<Integer> adapterChain) {
@@ -65,9 +64,9 @@ public class Day10 {
             else
                 threeDifferences++;
         }
-//        System.out.println(
-//                String.format("%d one differences, %d three differences",
-//                        oneDifferences, threeDifferences));
+        // System.out.println(
+        // String.format("%d one differences, %d three differences",
+        // oneDifferences, threeDifferences));
         int part1Answer = oneDifferences * threeDifferences;
         return part1Answer;
     }

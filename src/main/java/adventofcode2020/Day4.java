@@ -111,7 +111,7 @@ public class Day4 {
             }
         }
 
-        System.out.println("Day 4 part 1:" + numValidPassportsPart1);
-        System.out.println("Day 4 part 2:" + numValidPassportsPart2);
+        System.out.println("Day 4 part 1: " + numValidPassportsPart1);
+        System.out.println("Day 4 part 2: " + numValidPassportsPart2);
     }
 }

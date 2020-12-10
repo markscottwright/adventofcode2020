@@ -10,8 +10,8 @@ public class Day1 {
     private List<Integer> values;
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Day 1 part 1:" + new Day1().part1());
-        System.out.println("Day 1 part 2:" + new Day1().part2());
+        System.out.println("Day 1 part 1: " + new Day1().part1());
+        System.out.println("Day 1 part 2: " + new Day1().part2());
     }
 
     public Day1() throws IOException {

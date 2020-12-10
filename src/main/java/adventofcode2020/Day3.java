@@ -44,9 +44,9 @@ public class Day3 {
     public static void main(String[] args) throws IOException {
         Trees trees = new Trees("src/main/resources/day3.txt");
         System.out.println(
-                "Day 3 part 1:" + trees.treesEncounteredFollowingSlope(3, 1));
+                "Day 3 part 1: " + trees.treesEncounteredFollowingSlope(3, 1));
         System.out.println(
-                "Day 3 part 2:" + (trees.treesEncounteredFollowingSlope(1, 1)
+                "Day 3 part 2: " + (trees.treesEncounteredFollowingSlope(1, 1)
                         * trees.treesEncounteredFollowingSlope(3, 1)
                         * trees.treesEncounteredFollowingSlope(5, 1)
                         * trees.treesEncounteredFollowingSlope(7, 1)

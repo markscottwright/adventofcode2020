@@ -65,11 +65,11 @@ public class Day2 {
                 .readAllLines(Paths.get("src/main/resources/day2.txt")).stream()
                 .map(PasswordEntry::parse).filter(PasswordEntry::isGoodPart1)
                 .count();
-        System.out.println("Day 2 part 1:" + goodPasswords1);
+        System.out.println("Day 2 part 1: " + goodPasswords1);
         var goodPasswords2 = Files
                 .readAllLines(Paths.get("src/main/resources/day2.txt")).stream()
                 .map(PasswordEntry::parse).filter(PasswordEntry::isGoodPart2)
                 .count();
-        System.out.println("Day 2 part 2:" + goodPasswords2);
+        System.out.println("Day 2 part 2: " + goodPasswords2);
     }
 }

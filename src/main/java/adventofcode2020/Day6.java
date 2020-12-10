@@ -60,10 +60,10 @@ public class Day6 {
         int part1Answer = delimitedStream(
                 new File("src/main/resources/day6.txt"), "\n\n")
                         .map(Day6::allGroupAnswers).mapToInt(Set::size).sum();
-        System.out.println("Day 6 part 1:" + part1Answer);
+        System.out.println("Day 6 part 1: " + part1Answer);
         int part2Answer = delimitedStream(
                 new File("src/main/resources/day6.txt"), "\n\n")
                         .map(Day6::allCommonAnswers).mapToInt(Set::size).sum();
-        System.out.println("Day 6 part 2:" + part2Answer);
+        System.out.println("Day 6 part 2: " + part2Answer);
     }
 }
