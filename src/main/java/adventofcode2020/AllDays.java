@@ -16,5 +16,6 @@ public class AllDays {
         Day9.main(emptyArgs);
         Day10.main(emptyArgs);
         Day11.main(emptyArgs);
+        Day12.main(emptyArgs);
     }
 }
