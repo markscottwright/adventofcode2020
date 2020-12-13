@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Util {
 
-    public static void fail(String message) {
+    public static void fail(String message) throws RuntimeException {
         throw new RuntimeException(message);
     }
 

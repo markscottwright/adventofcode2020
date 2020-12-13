@@ -1,8 +1,8 @@
 package adventofcode2020;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -10,7 +10,7 @@ import org.junit.Test;
 public class Day11Test {
     //@formatter:off
     String input = 
-            "#.##.##.##\n"
+                      "#.##.##.##\n"
                     + "#######.##\n"
                     + "#.#.#..#..\n"
                     + "####.##.##\n"
@@ -31,7 +31,7 @@ public class Day11Test {
 
     @Test
     public void testPartTwo() {
-        var seatGrid = new Day11.SeatGrid(Arrays.asList(input.split("\n")));
+        var seatGrid = new Day11.SeatGrid(asList(input.split("\n")));
         seatGrid.runUntilStable(true);
         assertThat(seatGrid.numOccupiedSeats()).isEqualTo(26);
     }

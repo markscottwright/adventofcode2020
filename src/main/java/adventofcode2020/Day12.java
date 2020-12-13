@@ -1,9 +1,6 @@
 package adventofcode2020;
 
-import java.util.List;
 import java.util.stream.Collectors;
-
-import adventofcode2020.Day12.Instruction;
 
 public class Day12 {
 
@@ -120,18 +117,18 @@ public class Day12 {
     }
 
     public static void main(String[] emptyArgs) {
-        List<Instruction> directions = Util.inputLinesForDay(12).stream()
+        var instructions = Util.inputLinesForDay(12).stream()
                 .map(Instruction::parse).collect(Collectors.toList());
 
-        Position position = new Position(0, 0, 'E');
-        for (Instruction instruction : directions) {
+        var position = new Position(0, 0, 'E');
+        for (Instruction instruction : instructions) {
             position = position.apply(instruction);
         }
         System.out.println(
                 "Day 12 part 1: " + position.manhattanDistanceFrom(0, 0));
 
-        ShipAndWaypoint position2 = new ShipAndWaypoint(0, 0, 10, -1);
-        for (Instruction instruction : directions) {
+        var position2 = new ShipAndWaypoint(0, 0, 10, -1);
+        for (Instruction instruction : instructions) {
             position2 = position2.apply(instruction);
         }
         System.out.println(
