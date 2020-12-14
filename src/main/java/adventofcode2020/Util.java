@@ -5,10 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Spliterator;
 import java.util.Spliterators;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -45,4 +50,19 @@ public class Util {
         return StreamSupport.stream(splt, false).onClose(scanner::close);
     }
 
+    public static List<String> parseToGroups(Pattern p, String s) {
+        Matcher matcher = p.matcher(s);
+        if (!matcher.matches())
+            throw new RuntimeException("Can't parse " + s + " with " + p);
+        ArrayList<String> groups = new ArrayList<>();
+        for (int i = 1; i < matcher.groupCount() + 1; ++i)
+            groups.add(matcher.group(i));
+        return groups;
+    }
+
+    public static <T> List<T> parseAndCollectForDay(int day,
+            Function<String, T> parser) {
+        return inputLinesForDay(day).stream().map(parser)
+                .collect(Collectors.toList());
+    }
 }
