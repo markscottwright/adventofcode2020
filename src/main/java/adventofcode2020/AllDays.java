@@ -4,18 +4,18 @@ import java.io.IOException;
 
 public class AllDays {
     public static void main(String[] args) throws IOException {
-        String[] emptyArgs = new String[0];
-        Day1.main(emptyArgs);
-        Day2.main(emptyArgs);
-        Day3.main(emptyArgs);
-        Day4.main(emptyArgs);
-        Day5.main(emptyArgs);
-        Day6.main(emptyArgs);
-        Day7.main(emptyArgs);
-        Day8.main(emptyArgs);
-        Day9.main(emptyArgs);
-        Day10.main(emptyArgs);
-        Day11.main(emptyArgs);
-        Day12.main(emptyArgs);
+        Day1.main(new String[0]);
+        Day2.main(new String[0]);
+        Day3.main(new String[0]);
+        Day4.main(new String[0]);
+        Day5.main(new String[0]);
+        Day6.main(new String[0]);
+        Day7.main(new String[0]);
+        Day8.main(new String[0]);
+        Day9.main(new String[0]);
+        Day10.main(new String[0]);
+        Day11.main(new String[0]);
+        Day12.main(new String[0]);
+        Day13.main(new String[0]);
     }
 }

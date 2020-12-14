@@ -2,33 +2,10 @@ package adventofcode2020;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.Spliterator;
-import java.util.Spliterators;
 import java.util.TreeSet;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class Day6 {
-
-    static public Stream<String> delimitedStream(File file, String delimiter)
-            throws FileNotFoundException {
-        Scanner scanner = new Scanner(file);
-        scanner.useDelimiter(delimiter);
-        final Spliterator<String> splt = Spliterators.spliterator(scanner,
-                Long.MAX_VALUE, Spliterator.ORDERED | Spliterator.NONNULL);
-        return StreamSupport.stream(splt, false).onClose(scanner::close);
-    }
-
-    static public Stream<String> delimitedStream(String string,
-            String delimiter) {
-        Scanner scanner = new Scanner(string);
-        scanner.useDelimiter(delimiter);
-        final Spliterator<String> splt = Spliterators.spliterator(scanner,
-                Long.MAX_VALUE, Spliterator.ORDERED | Spliterator.NONNULL);
-        return StreamSupport.stream(splt, false).onClose(scanner::close);
-    }
 
     static Set<Character> allGroupAnswers(String group) {
         Set<Character> allAnswers = new TreeSet<>();
@@ -49,7 +26,7 @@ public class Day6 {
     }
 
     static Set<Character> allCommonAnswers(String group) {
-        return delimitedStream(group, "\n").map(Day6::toMutableSetOfChar)
+        return Util.delimitedStream(group, "\n").map(Day6::toMutableSetOfChar)
                 .reduce((s1, s2) -> {
                     s1.retainAll(s2);
                     return s1;
@@ -57,11 +34,11 @@ public class Day6 {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        int part1Answer = delimitedStream(
+        int part1Answer = Util.delimitedStream(
                 new File("src/main/resources/day6.txt"), "\n\n")
                         .map(Day6::allGroupAnswers).mapToInt(Set::size).sum();
         System.out.println("Day 6 part 1: " + part1Answer);
-        int part2Answer = delimitedStream(
+        int part2Answer = Util.delimitedStream(
                 new File("src/main/resources/day6.txt"), "\n\n")
                         .map(Day6::allCommonAnswers).mapToInt(Set::size).sum();
         System.out.println("Day 6 part 2: " + part2Answer);
