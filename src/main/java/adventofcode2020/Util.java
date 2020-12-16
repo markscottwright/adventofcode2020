@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Spliterator;
@@ -21,6 +22,10 @@ public class Util {
 
     public static void fail(String message) throws RuntimeException {
         throw new RuntimeException(message);
+    }
+
+    public static int sum(Collection<Integer> containers) {
+        return containers.stream().mapToInt(i -> i).sum();
     }
 
     public static List<String> inputLinesForDay(int dayNum) {
