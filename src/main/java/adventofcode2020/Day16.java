@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Day16 {
     static class Rule {
@@ -31,7 +30,8 @@ public class Day16 {
             this.range2End = range2End;
         }
 
-        static boolean matchesAny(Collection<Rule> rules, int number) {
+        static boolean anyRuleMatchesNumber(Collection<Rule> rules,
+                int number) {
             return rules.stream().anyMatch(r -> r.matches(number));
         }
 
@@ -98,7 +98,8 @@ public class Day16 {
         }
 
         List<Integer> nonMatchingFields(Collection<Rule> rules) {
-            return fields.stream().filter(f -> !Rule.matchesAny(rules, f))
+            return fields.stream()
+                    .filter(f -> !Rule.anyRuleMatchesNumber(rules, f))
                     .collect(Collectors.toList());
         }
     }
@@ -137,30 +138,30 @@ public class Day16 {
         System.out.println(nonMatchingSum);
 
         // to start with, a rule could be anywhere
-        ArrayList<HashSet<Rule>> rulesPerPosition = new ArrayList<>();
+        ArrayList<HashSet<Rule>> possibleRulesPerPosition = new ArrayList<>();
         for (int i = 0; i < myTicket.fields.size(); ++i) {
-            rulesPerPosition.add(new HashSet<Rule>(rules));
+            possibleRulesPerPosition.add(new HashSet<Rule>(rules));
         }
 
-        // determine which rules could apply to which position
+        // determine which rules can't apply to a position
         for (TicketFields ticket : validNearbyTickets) {
             for (int fieldIndex = 0; fieldIndex < ticket.fields
                     .size(); fieldIndex++) {
                 int fieldValue = ticket.fields.get(fieldIndex);
-                rulesPerPosition.get(fieldIndex)
+                possibleRulesPerPosition.get(fieldIndex)
                         .removeIf(rule -> !rule.matches(fieldValue));
             }
         }
 
         // some positions have more than one possible rule, find unique
         // positions
-        findUniqueAssignments(rulesPerPosition);
+        List<Rule> rulesPerPosition = destructivelyFindUniqueAssignments(
+                possibleRulesPerPosition);
 
         // find all my "departure" fields and multiply them together
         long part2 = 1;
         for (int i = 0; i < rulesPerPosition.size(); ++i)
-            if (rulesPerPosition.get(i).iterator().next().name
-                    .startsWith("departure "))
+            if (rulesPerPosition.get(i).name.startsWith("departure "))
                 part2 *= myTicket.fields.get(i);
 
         System.out.println("Day 16 part 2: " + part2);
@@ -170,8 +171,10 @@ public class Day16 {
      * Assign each rule to one and only one position. If this can't be
      * determined, this will never exit, but presumably that means the puzzle is
      * unsolvable.
+     * 
+     * @return
      */
-    private static void findUniqueAssignments(
+    private static List<Rule> destructivelyFindUniqueAssignments(
             ArrayList<HashSet<Rule>> positionToRules) {
         HashSet<Rule> assignedRules = new HashSet<>();
         while (assignedRules.size() != positionToRules.size()) {
@@ -186,6 +189,9 @@ public class Day16 {
                 }
             }
         }
+
+        return positionToRules.stream().map(rules -> rules.iterator().next())
+                .collect(Collectors.toList());
     }
 
 }
