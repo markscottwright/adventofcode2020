@@ -13,18 +13,18 @@ public class Day18 {
     }
 
     static class Expression {
-        private ArrayList<String> items;
+        private ArrayList<String> rpnItems;
         private ArrayList<String> originalItems;
 
         public Expression(ArrayList<String> items,
                 ArrayList<String> originalItems) {
-            this.items = items;
+            this.rpnItems = items;
             this.originalItems = originalItems;
         }
 
         @Override
         public String toString() {
-            return "Expression: " + items + " (" + originalItems + ")";
+            return "Expression: " + rpnItems + " (" + originalItems + ")";
         }
 
         static Expression parsePart1(String l) {
@@ -47,7 +47,7 @@ public class Day18 {
 
         long eval() {
             ArrayList<Long> stack = new ArrayList<>();
-            for (String i : items) {
+            for (String i : rpnItems) {
                 if (isNumber(i))
                     stack.add(Long.parseLong(i));
                 else if (i.equals("*"))
