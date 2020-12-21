@@ -70,4 +70,55 @@ public class Util {
         return inputLinesForDay(day).stream().map(parser)
                 .collect(Collectors.toList());
     }
+
+    public static File fileForDay(int dayNum) {
+        return new File("src/main/resources/day" + dayNum + ".txt");
+    }
+
+    public static boolean[][] rotate90(boolean[][] in) {
+        int n = in.length;
+        boolean[][] out = new boolean[n][];
+        for (int i = 0; i < n; ++i) {
+            out[i] = new boolean[n];
+            for (int j = 0; j < n; ++j) {
+                out[i][j] = in[n - j - 1][i];
+            }
+        }
+        return out;
+    }
+
+    public static boolean[][] flipHorizontal(boolean[][] in) {
+        int n = in.length;
+        boolean[][] out = new boolean[n][];
+        for (int i = 0; i < n; ++i) {
+            out[i] = new boolean[n];
+            for (int j = 0; j < n; ++j) {
+                out[i][j] = in[i][n - j - 1];
+            }
+        }
+        return out;
+    }
+
+    public static boolean[][] flipVertical(boolean[][] in) {
+        int n = in.length;
+        boolean[][] out = new boolean[n][];
+        for (int i = 0; i < n; ++i) {
+            out[i] = new boolean[n];
+            for (int j = 0; j < n; ++j) {
+                out[i][j] = in[n - i - 1][j];
+            }
+        }
+        return out;
+    }
+
+    public static int countTrue(boolean[][] map) {
+        int n = 0;
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map[y].length; x++) {
+                if (map[y][x])
+                    n++;
+            }
+        }
+        return n;
+    }
 }
