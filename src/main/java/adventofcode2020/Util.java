@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Spliterator;
@@ -120,5 +121,12 @@ public class Util {
             }
         }
         return n;
+    }
+
+    public static HashSet<String> intersection(HashSet<String> i1,
+            HashSet<String> i2) {
+        var out = new HashSet<String>(i1);
+        out.retainAll(i2);
+        return out;
     }
 }
