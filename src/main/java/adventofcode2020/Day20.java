@@ -258,8 +258,6 @@ public class Day20 {
         var m8 = Util.flipVertical(r90);
         var m9 = Util.flipHorizontal(r180);
         var m10 = Util.flipVertical(r180);
-        var m11 = Util.flipHorizontal(r270);
-        var m12 = Util.flipVertical(r270);
         List<boolean[][]> allMapTransformations = Arrays.asList(m1, r90, r180,
                 r270, m5, m6, m7, m8, m9, m10);
         return allMapTransformations;
