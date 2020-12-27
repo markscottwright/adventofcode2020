@@ -139,8 +139,8 @@ public class Day23 {
             cupsPart2.playRound();
         }
         Cup cupAfter1 = cupsPart2.cups.get(1L).next;
-        long part2 = cupAfter1.label * cupAfter1.next.label;
-        System.out.println("Day 23 part 1: " + part2);
+        System.out.println(
+                "Day 23 part 1: " + (cupAfter1.label * cupAfter1.next.label));
     }
 
 }
