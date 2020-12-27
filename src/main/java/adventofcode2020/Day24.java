@@ -106,18 +106,19 @@ public class Day24 {
                 nextBlackTiles.add(blackTile);
         }
 
-        // Any white tile with exactly 2 black tiles immediately adjacent to it
-        // is flipped to black.
+        // find all tiles that are neighbors of a black tile, and how many black
+        // tiles it neighbors
         HashMap<Position, Integer> tileToNumBlackNeighbors = new HashMap<>();
         for (Position blackTile : blackTiles) {
             for (Position blackTileNeighbor : blackTile.neighbors()) {
                 tileToNumBlackNeighbors.merge(blackTileNeighbor, 1,
-                        (prev, one) -> prev + 1);
+                        (prevNumNeighbors, one) -> prevNumNeighbors + 1);
             }
         }
 
         for (var tileAndNumNeighbors : tileToNumBlackNeighbors.entrySet()) {
-            // is currently white
+            // make a tile black if it is currently white and has 2 black
+            // neighbors
             if (!blackTiles.contains(tileAndNumNeighbors.getKey())
                     && tileAndNumNeighbors.getValue() == 2)
                 nextBlackTiles.add(tileAndNumNeighbors.getKey());

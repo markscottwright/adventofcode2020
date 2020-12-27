@@ -28,5 +28,6 @@ public class AllDays {
         Day22.main(new String[0]);
         Day23.main(new String[0]);
         Day24.main(new String[0]);
+        Day25.main(new String[0]);
     }
 }
