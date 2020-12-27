@@ -6,11 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
-import com.google.common.collect.Lists;
 
 public class Day24 {
 
@@ -33,6 +30,10 @@ public class Day24 {
             return Objects.hash(x, y);
         }
 
+        /**
+         * Since this is hexagonal, lateral movement increases position by 2, as
+         * hexagons on the line above are in-between those on the current line.
+         */
         Position move(String direction) {
             if (direction.equals("e"))
                 return new Position(x + 2, y);
@@ -69,6 +70,9 @@ public class Day24 {
         }
     }
 
+    /**
+     * parse smashed together e,w,ne,nw,se,sw string into array of strings.
+     */
     static List<String> parseDirections(String l) {
         ArrayList<String> directions = new ArrayList<>();
         int i = 0;
@@ -87,6 +91,10 @@ public class Day24 {
         return directions;
     }
 
+    /**
+     * Using the rules from the puzzle, transform tiles from day n into those
+     * for day n+1.
+     */
     static Set<Position> flipAtDaysEnd(Set<Position> blackTiles) {
         HashSet<Position> nextBlackTiles = new HashSet<>();
         // Any black tile with zero or more than 2 black tiles immediately
